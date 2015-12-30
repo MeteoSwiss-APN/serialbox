@@ -54,7 +54,7 @@ SUBROUTINE ppser_initialize(directory, prefix, mode, prefix_ref)
   CHARACTER(LEN=*), INTENT(IN)     :: directory, prefix
   INTEGER, OPTIONAL, INTENT(IN)    :: mode
   CHARACTER(LEN=*), OPTIONAL, INTENT(IN)     :: prefix_ref
-  REAL                             :: realvalue
+  REAL(KIND=wp)                    :: realvalue
   INTEGER                          :: intvalue
   CHARACTER(LEN=1), DIMENSION(128) :: buffer
   CHARACTER(LEN=6)                 :: suffix
@@ -81,7 +81,10 @@ SUBROUTINE ppser_initialize(directory, prefix, mode, prefix_ref)
   ppser_reallength = INT(SIZE(TRANSFER(realvalue, buffer)))
 
   ! Get name of real
-  ppser_realtype = 'double'
+  SELECT CASE (wp)
+    CASE (sp) ; ppser_realtype = 'float'
+    CASE (dp) ; ppser_realtype = 'double'
+  END SELECT
 
 END SUBROUTINE ppser_initialize
 
