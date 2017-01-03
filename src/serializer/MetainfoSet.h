@@ -243,7 +243,7 @@ namespace ser {
         *
         * @return The value of the metainfo is returned as copy
         */
-        float AsDouble(const std::string& key) const;
+        double AsDouble(const std::string& key) const;
 
         /**
         * Extracts a value in RealType representation, where RealType is
