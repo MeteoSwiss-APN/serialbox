@@ -1,6 +1,16 @@
 
-if(NOT "${CMAKE_Fortran_COMPILER_ID}" MATCHES "PGI")
-    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -cpp ")
+if("${CMAKE_Fortran_COMPILER_ID}" MATCHES "Cray")
+    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -hnoomp -eZ")
+endif()
+
+
+if(NOT "${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU")
+    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -cpp")
+endif()
+
+
+if( "${CMAKE_Fortran_COMPILER_ID}" MATCHES "PGI")
+    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -Mpreprocess")
 endif()
 
 set(
