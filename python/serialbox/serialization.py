@@ -409,7 +409,7 @@ class Serializer(object):
         fs_fields_at_savepoint_name_lengths(self.serializer, savepoint.savepoint, name_lengths)
 
         names = ((ctypes.c_char_p)*n_fields)()
-        names[:] = [('\0'*name_lengths[i]).encode() for i in range(n_fields)]
+        names[:] = [('\0'*(name_lengths[i]+1)).encode() for i in range(n_fields)]
         fs_fields_at_savepoint_names(self.serializer, savepoint.savepoint, names)
 
         return [n.decode() for n in names]
