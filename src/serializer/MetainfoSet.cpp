@@ -263,7 +263,7 @@ float MetainfoSet::AsFloat(const std::string& key) const
     return (float)0.;
 }
 
-float MetainfoSet::AsDouble(const std::string& key) const
+double MetainfoSet::AsDouble(const std::string& key) const
 {
     std::map<std::string, boost::any>::const_iterator iter = checkKeyExists(key);
     const boost::any& a = iter->second;
@@ -275,7 +275,7 @@ float MetainfoSet::AsDouble(const std::string& key) const
     else if(t == typeid(double)) return boost::any_cast<double>(a);
     else if(t == typeid(std::string))
     {
-        float v;
+        double v;
         std::stringstream ss;
         ss << boost::any_cast<std::string>(a);
         ss >> v;
